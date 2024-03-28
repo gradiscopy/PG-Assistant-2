@@ -1,0 +1,6 @@
+{
+    "webhook_url": "",
+    "min_userid_to_snipe": 10000000,
+    "max_userid_to_snipe": 100000000,
+    "offline_years": 6
+}
