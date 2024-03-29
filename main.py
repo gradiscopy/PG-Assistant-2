@@ -42,7 +42,7 @@ webhook = config.get("webhook_url")
 min_id = config.get("min_userid_to_snipe")
 max_id = config.get("max_userid_to_snipe")    
 
-version = "v1.1.5"
+version = "v1.2.0"
 
 os.system('cls' if os.name == 'nt' else 'clear')
 Logger.info(Fore.YELLOW + " Checking version...")
@@ -74,8 +74,6 @@ print(Fore.LIGHTCYAN_EX + f"| > Webhook to send: {webhook}")
 print(Fore.LIGHTWHITE_EX + "────────────────────────────────")
 print(Fore.LIGHTCYAN_EX + "| >> Credits")
 print(Fore.LIGHTCYAN_EX + "| > Original version of this bot: https://github.com/zkoolol/Roblox-PG-Assistant")
-print(Fore.LIGHTCYAN_EX + "| > No hosting upgraded vers: https://github.com/kellyhated/Kelly-PG-Assistant-nun-hosting-/tree/main")
-print(Fore.LIGHTCYAN_EX + "| > Hosting version: https://github.com/kellyhated/Kelly-PG-Assistant-hosting-supported/tree/main")
 print(Fore.LIGHTCYAN_EX + "| > Made by kellyhated, zkoolol (github)")
 print(Fore.LIGHTCYAN_EX + "| > Discord server with updates: .gg/Z8K6PUJRGa")
 print(Fore.LIGHTWHITE_EX + "────────────────────────────────")
@@ -176,6 +174,8 @@ async def rap(session, user_id, cursor, rap=0):
         return await rap(session, user_id, response["nextPageCursor"], rap)
     return rap
 
+total_scraped = 0
+
 async def main(webhook_url, min_id, max_id):
     async with aiohttp.ClientSession() as session:
         user_id = random.randint(min_id, max_id)
@@ -216,18 +216,20 @@ async def main(webhook_url, min_id, max_id):
             return
 
         created_year_str = str(created_year)
-        last_online_date_str = last_online_date.strftime("%B %d, %Y")    
+        last_online_date_str = last_online_date.strftime("%B %d, %Y")
+        
+        global total_scraped 
 
         embed = {
             "title": f":bell: Scraped new user for PG ({roblox_username})",
-            "description": "",
+            "description": f":gem: Total users scraped: {total_scraped}",
             "color": 5763719,
             "url": f"https://roblox.com/users/{user_id}",
             "thumbnail": {"url": await avatar_thumbnail(session, user_id)},
             "fields": [
                 {"name": ":coral: User ID:", "value": user_id, "inline": True},
                 {"name": ":bust_in_silhouette: Username:", "value": roblox_username, "inline": True},
-                {"name": ":newspaper: Description:", "value": f"```{description}```" if description else "No description founded", "inline": True},                
+                {"name": ":newspaper: Description:", "value": f"```{description}```" if description else "User doesnt have description.", "inline": True},                
                 {"name": ":baby: Created Year:", "value": created_year_str, "inline": True},
                 {"name": ":last_quarter_moon: Last Online:", "value": last_online_date_str, "inline": True},
                 {"name": ":white_check_mark: Verified:", "value": verified_status, "inline": True},
@@ -243,10 +245,12 @@ async def main(webhook_url, min_id, max_id):
         data = {"embeds": [embed]}
         async with session.post(webhook_url, json=data) as response:
             if response.status == 204:
-                Logger.info(Fore.GREEN + f" Successfully sent {roblox_username} to webhook")
+                total_scraped += 1
+                
+                Logger.info(Fore.GREEN + f" Successfully sent {roblox_username} to webhook | Total Users Scraped: {total_scraped}")
             else:
                 Logger.error(Fore.RED + f" Failed to send {roblox_username} to webhook | Status Code: {response.status}")
-                asyncio.create_task(clear_output())
+                asyncio.create_task(clear_output())              
 
 async def clear_output():
     await asyncio.sleep(1.2)
