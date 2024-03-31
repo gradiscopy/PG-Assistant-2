@@ -75,10 +75,10 @@ print(Fore.LIGHTWHITE_EX + "─────────────────�
 print(Fore.LIGHTCYAN_EX + "| >> Credits")
 print(Fore.LIGHTCYAN_EX + "| > Original version of this bot: https://github.com/zkoolol/Roblox-PG-Assistant")
 print(Fore.LIGHTCYAN_EX + "| > Made by kellyhated, zkoolol (github)")
-print(Fore.LIGHTCYAN_EX + "| > Discord server with updates: .gg/Z8K6PUJRGa")
+print(Fore.LIGHTCYAN_EX + "| > Discord server with updates: .gg/73y53QZfjA")
 print(Fore.LIGHTWHITE_EX + "────────────────────────────────")
 print(Fore.LIGHTCYAN_EX + "| >> Misc")
-print(Fore.LIGHTCYAN_EX + "| > Vouch here if u got acc: .gg/Z8K6PUJRGa")
+print(Fore.LIGHTCYAN_EX + "| > Vouch here if u got acc: .gg/73y53QZfjA")
 print(Fore.LIGHTCYAN_EX + f"| > Version: {version}")
 print(Fore.LIGHTWHITE_EX + "────────────────────────────────")
 
