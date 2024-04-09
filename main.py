@@ -3,6 +3,7 @@ from colorama import Fore
 import time
 from modules.console import Logger
 
+os.system('cls' if os.name == 'nt' else 'clear')
 print(Fore.YELLOW + "| [INFO] Checking for modules...")
 time.sleep(5)
 os.system('cls' if os.name == 'nt' else 'clear')
@@ -73,8 +74,8 @@ print(Fore.LIGHTCYAN_EX + f"| > Min ID: {min_id}")
 print(Fore.LIGHTCYAN_EX + f"| > Webhook to send: {webhook}")
 print(Fore.LIGHTWHITE_EX + "────────────────────────────────")
 print(Fore.LIGHTCYAN_EX + "| >> Credits")
-print(Fore.LIGHTCYAN_EX + "| > Original version of this bot: https://github.com/zkoolol/Roblox-PG-Assistant")
-print(Fore.LIGHTCYAN_EX + "| > Made by kellyhated, zkoolol (github)")
+print(Fore.LIGHTCYAN_EX + "| > Original version of this bot: https://github.com/ripzkoo/Roblox-PG-Assistant")
+print(Fore.LIGHTCYAN_EX + "| > Made by kellyhated, ripzkoo (github)")
 print(Fore.LIGHTCYAN_EX + "| > Discord server with updates: .gg/73y53QZfjA")
 print(Fore.LIGHTWHITE_EX + "────────────────────────────────")
 print(Fore.LIGHTCYAN_EX + "| >> Misc")
@@ -238,7 +239,7 @@ async def main(webhook_url, min_id, max_id):
                 {"name": ":space_invader: Common Passwords:", "value": f"``{roblox_username}123, {roblox_username}{created_year_str}, {roblox_username}s123, {roblox_username}1, {roblox_username}12, {roblox_username}101, qwerty, abc123, password, password123, 12345, 123456789, 1234567``", "inline": True}
             ],
             "footer": {
-                "text": f"{version} | made by kellyhated"
+                "text": f"{version} | made by kellyhated, ripzkoo"
             }
         }
 
